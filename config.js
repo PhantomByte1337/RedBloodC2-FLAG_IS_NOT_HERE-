@@ -20,4 +20,4 @@ const settings = {
 module.exports = {settings};
 ipdata_APIKEY=your_ipdata_apikey
 TOKEN_SECRET=069c352eb55d552f26cd8658f2c864a32058e3067d3c2106319015c0b9b616f6f67ae08a18af8824c7eac2ce341b67fb11df08f9acb51de7483bfb5c8a084a31
-flag=thiran{NOOOO!_You_Got_Me}
+flag= LOL! I have removed the flag so try harder to find me loser!
