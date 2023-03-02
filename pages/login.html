@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>login page</title>
+  <link rel="stylesheet" href="assets/login.css">
+</head>
+
+<body>
+  <div class="login-page">
+    <div class="form">
+      <form class="login-form" method="post" action="">
+        <input type="text" name=username placeholder="username" id="username" />
+        <input type="password" name=password placeholder="password" id="password" />
+        <input type="a" value="login" onclick="login()">
+        <p style="display:none" id="status">username or password is incorrect</p>
+      </form>
+    </div>
+  </div>
+  <script>
+    function login() {
+      var http = new XMLHttpRequest();
+      var url = '/login';
+      var params = `username=${username.value}&password=${password.value}`;
+      http.open('POST', url, true);
+
+      http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+      http.onreadystatechange = function() {
+        if(http.readyState == 4 && http.status == 200) {
+          if(http.responseText != "wrong password"){
+            var expires = "";
+            document.cookie = "session"+"="+http.responseText+expires+";";
+            window.location.replace("../");
+   
+          }else{
+            
+            window.location.replace("/login?status=wrong");
+
+          }
+        }
+    }
+    http.send(params);
+      }
+      // 47d0d2a3-5297-4f3d-ab84-cc68d8ea5a8d
+      // 56459d41-085b-483c-84ab-316a7c163e86
+      const params = new URLSearchParams(window.location.search)
+      if (params.get("status") == "wrong") {
+        document.getElementById("status").style.color = "white";
+
+        document.getElementById("status").style.display = "";
+      }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user panel</title>
+    <link rel="stylesheet" href="../assets/profile.css">
+
+</head>
+
+<body style="background-color:rgb(37, 37, 37)">
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: rgb(59, 0, 0);
+        }
+    </style>
+    <%- include('bar.ejs'); %>
+
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-xl-6 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
+                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                <div class="card-block text-center text-white">
+                                    <div class="m-b-25"> <img
+                                            src="/assets/fox.png"
+                                        
+                                            class="img-radius" height="120" alt="User-Profile-Image">
+                                         </div>
+
+                                </div>
+                                <%- include('profilebuttons.ejs'); %>
+
+                                        <!-- <button class="button-34" role="button" onclick="open_button('macro_div')" title="generate powershell reverse shell">
+                                            macro</button> -->
+                            </div>
+                            <div class="col-sm-8">
+                                <%- include('profiledivs.ejs'); %>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script defer src="../assets/profile.js"></script>
+
+</body>
+
+</html>

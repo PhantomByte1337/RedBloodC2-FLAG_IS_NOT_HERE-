@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user panel</title>
+    <link rel="stylesheet" href="../assets/profile.css">
+
+</head>
+
+<body style="background-color:rgb(37, 37, 37)">
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: rgb(59, 0, 0);
+        }
+    </style>
+    <%- include('bar.ejs'); %>
+
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="row container d-flex justify-content-center">
+                <div class="col-xl-6 col-md-12">
+                    <div class="card user-card-full">
+                        <div class="row m-l-0 m-r-0">
+                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                                <div class="card-block text-center text-white">
+                                    <div class="m-b-25"> <img
+                                            src="/assets/fox.png"
+                                        
+                                            class="img-radius" height="120" alt="User-Profile-Image">
+                                         </div>
+
+                                </div>
+                                <!-- <button class="button-34" role="button" onclick="open_button('list_users_div')">
+                                    list users</button> -->
+                                    <a class="modern_button" onclick="open_button('list_users_div')" style="--clr:#851804" ><span> list users</span><i></i></a>
+
+                                <!-- <button class="button-34" role="button" onclick="open_button('add_user_div')">
+                                    Add user</button> -->
+                                    <a class="modern_button" onclick="open_button('add_user_div')" style="--clr:#851804" ><span>Add user</span><i></i></a>
+
+                                    <%- include('profilebuttons.ejs'); %>
+
+
+                                        
+                            </div>
+                            <div class="col-sm-8">
+                                <div id="list_users_div" style="display:none" method="post">
+                                    <br>
+                                    <table class="modern_table">
+                                        <tr>
+                                            <th>username</th>
+                                            <th>role</th>
+                                            <th>sessions</th>
+
+                                            <th>actions</th>
+
+                                        </tr>
+                                        <% for(var i=0; i < list_users.length; i++) { %>
+                                        <tr>
+                                            <td><%= list_users[i].username %></td>
+                                            <td><%= list_users[i].role %></td>
+                                            <% if(list_users[i].role == 'admin'){ %>
+                                                <td>all</td>
+
+                                                <% }else{ %>
+
+                                            <td>
+                                                <% if(list_users[i].sessions.length == 0){ %>
+                                                    no sessions
+                                                    <% } %>
+                                                    <% for(var c=0; c < list_users[i].sessions.length; c++) {  %>
+                                                <%=list_users[i].sessions[c]  %>,
+                                                <% } %>
+                                            </td>
+                                            <% } %>
+
+                                            <td><button class="button-62" role="button"
+                                                onclick="delete_user('<%= list_users[i].username %>')">delete user</button>
+                                                <% if(list_users[i].role == 'admin'){ %>
+                                                <button class="button-62" role="button"
+                                                onclick="change_role('<%= list_users[i].username %>','user')">change role to user</button>
+                                                <% }else{ %>
+                                                    <button class="button-62" role="button"
+                                                    onclick="change_role('<%= list_users[i].username %>','admin')">change role to admin</button>
+    
+
+                                                    <% } %>
+                                                    <button class="button-62" role="button" onclick="change_username('<%= list_users[i].username %>')">change
+                                                        username</button>
+                                                        <button class="button-62" role="button" onclick="add_session('<%= list_users[i].username %>')">add session</button>
+                                                        <button class="button-62" role="button" onclick="delete_session('<%= list_users[i].username %>')">delete session</button>
+
+                                                    </td>
+                                        </tr>
+                                        <% } %>
+                                    </table>
+                                </div>
+                                <div id="add_user_div" style="display:none" method="post">
+                                    <br>
+                                    <div class="success-msg" id="add_user_div_status" style="display:none;color:white">
+                                        <i id="add_user_message"></i>
+
+                                    </div>
+                                    <input class="input-change-password" type=text id=add_user_username
+                                        placeholder="username">
+                                    <input class="input-change-password" type=text id=add_user_passowrd
+                                        placeholder="password"><br><br>
+                                        <a class="modern_button" onclick="add_user_send()" style="--clr:#851804" ><span>Submit</span><i></i></a>
+
+                                   
+                                        <br><br><br>
+
+                                </div>
+
+                                <%- include('profiledivs.ejs'); %>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script defer src="../assets/profile.js"></script>
+
+</body>
+
+</html>
