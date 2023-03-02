@@ -1,1 +1,1 @@
-# RedBloodC2-FLAG_IS_NOT_HERE-
+# FLAG_IS_NOT_HERE-
